@@ -1,4 +1,4 @@
-name: build nodejs application
+name: Martix- nodejs application
 on: # multiple triggers when this workflow can run
  workflow_dispatch:
  push:
