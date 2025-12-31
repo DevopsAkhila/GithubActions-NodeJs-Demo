@@ -3,10 +3,10 @@ name: Github actions workflow for nodejs code
 on: #trigger the workflow execution
   push: #restrict the execution of workflow whenever a push is made to the main branch
     branches:
-      - main
+      - master
   pull_request: #restrict the execution of workflow whenever a pull request is created to the main branch
     branches:
-      - main
+      - master
   workflow_dispatch: #manual trigger of the workflow
 jobs:
     Job1_Build_the_nodejs_code:
