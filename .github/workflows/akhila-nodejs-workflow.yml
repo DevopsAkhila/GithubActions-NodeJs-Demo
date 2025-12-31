@@ -3,17 +3,19 @@ name: Github actions workflow for nodejs code
 on: #trigger the workflow execution
   push: #restrict the execution of workflow whenever a push is made to the main branch
     branches:
-      - master
+      - main
   pull_request: #restrict the execution of workflow whenever a pull request is created to the main branch
     branches:
-      - master
+      - main
   workflow_dispatch: #manual trigger of the workflow
-  jobs:
-    Job1-Build the nodejs code:
+jobs:
+    Job1_Build_nodejs_code:
       runs-on: ubuntu-22.04
       steps:
         - name: Clone the repo
           uses: actions/checkout@v2
+          with: 
+            repository: DevopsAkhila/GithubActions-NodeJs-Demo
         - name: Install nodejs dependencies
           uses: actions/setup-node@v2
           with:
