@@ -14,8 +14,6 @@ jobs:
       steps:
         - name: Clone the repo
           uses: actions/checkout@v2
-          with: 
-            repository: https://github.com/DevopsAkhila/GithubActions-NodeJs-Demo.git
         - name: Install nodejs dependencies
           uses: actions/setup-node@v2
           with:
