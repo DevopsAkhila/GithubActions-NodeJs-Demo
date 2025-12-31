@@ -13,13 +13,12 @@ jobs:
       runs-on: ubuntu-22.04
       steps:
         - name: Clone the repo
-          uses: actions/checkout@v2
+          uses: actions/checkout@v4
         - name: Install nodejs dependencies
-          uses: actions/setup-node@v2
+          uses: actions/setup-node@v4
           with:
             node-version: '18' #specify the nodejs version as in package.json file
             cache: 'npm' #cache the npm dependencies to speed up the workflow execution
-            cache-dependency-path: GithubActions-NodeJs-Demo/package-lock.json
         - name: Install node dependencies
           run: npm ci #ci command is used in the automated environments -clean install of nodejs libraries i.e. the dependencies
         - name: Execute the test 
