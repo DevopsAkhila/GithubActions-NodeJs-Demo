@@ -9,13 +9,13 @@ on: #trigger the workflow execution
       - main
   workflow_dispatch: #manual trigger of the workflow
 jobs:
-    Job1_Build_nodejs_code:
+    Job1_Build_the_nodejs_code:
       runs-on: ubuntu-22.04
       steps:
         - name: Clone the repo
           uses: actions/checkout@v2
           with: 
-            repository: DevopsAkhila/GithubActions-NodeJs-Demo
+            repository: https://github.com/DevopsAkhila/GithubActions-NodeJs-Demo.git
         - name: Install nodejs dependencies
           uses: actions/setup-node@v2
           with:
