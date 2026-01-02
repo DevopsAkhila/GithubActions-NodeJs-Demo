@@ -1,43 +1,51 @@
 ---
 name: Matrix demo on nodejs code
+
 on:
   workflow_dispatch:
   push:
-    branches:
-      - master
+    branches: [ master ]
   pull_request:
-    branches:
-      - master
+    branches: [ master ]
+
 jobs:
-  Setupnode:
+  setup-node:
     continue-on-error: true
+
     strategy:
       matrix:
         operating_system: [ubuntu-latest, windows-latest]
-        artifact_name: [artifact-node-ubuntu,artifact-node-windows]
-        exclude:  # dont execute these combinations
+        artifact_name: [artifact-node-ubuntu, artifact-node-windows]
+        exclude:
           - operating_system: ubuntu-latest
             artifact_name: artifact-node-windows
           - operating_system: windows-latest
             artifact_name: artifact-node-ubuntu
+
     runs-on: ${{ matrix.operating_system }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
-       - name: Install node dependencies
-         run: npm ci 
-      - name: Execute test cases 
+
+      - name: Install node dependencies
+        run: npm ci
+
+      - name: Execute test cases
         run: npm test
-      - name: Build the nodejs code
+
+      - name: Build the Node.js code
         run: npm run build
-      - name: Upload Artifact 
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
-        with: 
-          name: ${{ matrix.artifact_name }} # we need to add a variable which changes as per the OS
+        with:
+          name: ${{ matrix.artifact_name }}
           path: dist/
+          if-no-files-found: warn
