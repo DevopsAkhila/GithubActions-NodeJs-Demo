@@ -1,0 +1,23 @@
+---
+name: Matrix demo on nodejs code
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+jobs:
+  Setupnode:
+    matrix:
+      operating-system: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.operating-system }} 
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '18'
