@@ -13,14 +13,14 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        operating-system: [ubuntu-latest, windows-latest]
+        operating_system: [ubuntu-latest, windows-latest]
         artifact_name: [artifact-node-ubuntu,artifact-node-windows]
         exclude:  # dont execute these combinations
           - operating_system: ubuntu-latest
             artifact_name: artifact-node-windows
           - operating_system: windows-latest
             artifact_name: artifact-node-ubuntu   
-    runs-on: ${{ matrix.operating-system }} 
+    runs-on: ${{ matrix.operating_system }} 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
