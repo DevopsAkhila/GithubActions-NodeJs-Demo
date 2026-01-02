@@ -11,11 +11,10 @@ on:
 jobs:
   Setupnode:
     continue-on-error: true
-    matrix:
-      operating-system: 
-       - ubuntu-latest
-       - windows-latest
-       - macos-latest
+    operating-system-matrix:
+      strategy:
+        matrix:
+          operating-system: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.operating-system }} 
     steps:
       - name: Checkout repository
