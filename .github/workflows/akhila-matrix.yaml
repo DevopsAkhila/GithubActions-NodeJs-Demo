@@ -10,8 +10,12 @@ on:
       - master
 jobs:
   Setupnode:
+    continue-on-error: true
     matrix:
-      operating-system: [ubuntu-latest, windows-latest, macos-latest]
+      operating-system: 
+       - ubuntu-latest
+       - windows-latest
+       - macos-latest
     runs-on: ${{ matrix.operating-system }} 
     steps:
       - name: Checkout repository
@@ -21,3 +25,12 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version: '18'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Upload nodejs artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: nodejs-artifact
+          path: dist/
+           
