@@ -19,8 +19,8 @@ jobs:
           - operating_system: ubuntu-latest
             artifact_name: artifact-node-windows
           - operating_system: windows-latest
-            artifact_name: artifact-node-ubuntu   
-    runs-on: ${{ matrix.operating_system }} 
+            artifact_name: artifact-node-ubuntu
+    runs-on: ${{ matrix.operating_system }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
