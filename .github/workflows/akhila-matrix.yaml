@@ -14,6 +14,12 @@ jobs:
     strategy:
       matrix:
         operating-system: [ubuntu-latest, windows-latest]
+        artifact_name: [artifact-node-ubuntu,artifact-node-windows]
+        exclude:  # dont execute these combinations
+          - operating_system: ubuntu-latest
+            artifact_name: artifact-node-windows
+          - operating_system: windows-latest
+            artifact_name: artifact-node-ubuntu   
     runs-on: ${{ matrix.operating-system }} 
     steps:
       - name: Checkout repository
@@ -24,11 +30,14 @@ jobs:
         with:
           node-version: '18'
           cache: 'npm'
-      - name: Install dependencies
-        run: npm ci build
-      - name: Upload nodejs artifact
+       - name: Install node dependencies
+         run: npm ci 
+      - name: Execute test cases 
+        run: npm test
+      - name: Build the nodejs code
+        run: npm run build
+      - name: Upload Artifact 
         uses: actions/upload-artifact@v4
-        with:
-          name: nodejs-artifact
+        with: 
+          name: ${{ matrix.artifact_name }} # we need to add a variable which changes as per the OS
           path: dist/
-           
