@@ -1,7 +1,7 @@
 ---
 #self hosted runner and github runner
 ---
-name: Github actions workflow for nodejs code
+name: Github actions workflow for nodejs code on self hosted runner and github runner
 on: #trigger the workflow execution
   push: #restrict the execution of workflow whenever a push is made to the main branch
     branches:
