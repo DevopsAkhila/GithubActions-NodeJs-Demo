@@ -11,36 +11,36 @@ on:
 jobs:
    job1:
      needs: job2
-     continue_on_error: true
-     runs_on: ${{ matrix.operating_system }}
+     continue-on-error: true
+     runs-on: ${{ matrix.operating_system }}
      strategy:
        matrix:
          node-version: [18,16]
          operating_system: [ubuntu-latest]
-         steps:
-           - name: Clone the repo
-             uses: actions/checkout@v4
-           - name: Setup nodejs
-             uses: actions/setup-node@v6
-             with:
-               node-version: ${{matrix.node-version }}
-               cache: 'npm'
-          - name: Install dependencies
-             run: npm install
+      steps:
+        - name: Clone the repo
+          uses: actions/checkout@v4
+        - name: Setup nodejs
+          uses: actions/setup-node@v6
+          with:
+            node-version: ${{matrix.node-version }}
+            cache: 'npm'
+        - name: Install dependencies
+          run: npm install
     job2:
-      runs_on: ${{ matrix.operating_system }}
+      runs-on: ${{ matrix.operating_system }}
       strategy:
        matrix:
          node-version: [18,16]
          operating_system: [ubuntu-latest]
-         steps:
-           - name: Clone the repo
-             uses: actions/checkout@v4
-           - name: Setup nodejs
-             uses: actions/setup-node@v6
-             with:
-               node-version: ${{matrix.node-version }}
-               cache: 'npm'
-          - name: Install dependencies
-             run: npm install
+      steps:
+        - name: Clone the repo
+          uses: actions/checkout@v4
+        - name: Setup nodejs
+          uses: actions/setup-node@v6
+          with:
+            node-version: ${{matrix.node-version }}
+            cache: 'npm'
+        - name: Install dependencies
+          run: npm install
           
