@@ -1,7 +1,5 @@
 ---
-#self hosted runner and github runner
----
-name: Github actions workflow for nodejs code on self hosted runner and github runner
+name: Github actions workflow for nodejs code
 on: #trigger the workflow execution
   push: #restrict the execution of workflow whenever a push is made to the main branch
     branches:
@@ -27,7 +25,7 @@ jobs:
           run: npm test #execute the test cases present in the codebase
         - name: Build the nodejs code
           run: npm run build #build the nodejs code using the build script present in package.json file
-        Job2_Build_the_nodejs_code_on_selfhosted_ubuntu: #job name
+    Job2_Build_the_nodejs_code_on_selfhosted_ubuntu: #job name
       runs-on: self-hosted
       steps:
         - name: Clone the repo
